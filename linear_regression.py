@@ -6,7 +6,6 @@ from math import sqrt
 
 numerical_features = ["year","month", "day", "bedrooms", "bathrooms","sqft_living","sqft_lot","floors","waterfront","view","condition","grade","sqft_above","sqft_basement","yr_built","yr_renovated","zipcode","lat","long","sqft_living15","sqft_lot15"]
 categorical_features = ["waterfront","condition","grade"]
-font = {'fontsize' : 32}
 
 class Linear_Regression:
     def __init__ (self, x, y):
