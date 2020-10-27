@@ -8,6 +8,7 @@ numerical_features = ["year","month", "day", "bedrooms", "bathrooms","sqft_livin
 categorical_features = ["waterfront","condition","grade"]
 
 class Linear_Regression:
+
     def __init__ (self, x, y):
         """
         :param x: independent variables in linear regression model
