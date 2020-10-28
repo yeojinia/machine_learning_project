@@ -1,8 +1,12 @@
+# A Logistic Regression is a way to model the probability for binary classification tasks. 
+# Adding independent variables to a logistic regression can lead to the model overfitting.
+# In order to avoid overfitting on logistic regression, Ridge(L2) regularizer is applied,
+# its effect of the amount of regularization is experimented.
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from numpy import count_nonzero
-
 
 def sort_by_absolute(tup):
     return (sorted(tup, key=lambda x: abs(x[0])))
@@ -38,7 +42,6 @@ def accuracy(predicted_labels, ground_truth_labels):
     diff = predicted_labels - ground_truth_labels
     return 1.0 - (float(np.count_nonzero(diff))/len(diff))
 
-
 class Logistic_Regression:
 
     def __init__ (self, x, y):
@@ -72,22 +75,16 @@ class Logistic_Regression:
 
         for idx in range(0, max_iteration):
             iteration = idx + 1
-
             scores_ = np.dot(self.x, self.w_)
             y_pred = self.sigmoid(scores_)
             residuals = y_pred - self.y
             gradient_vector = (np.dot(self.x.T, residuals)) / N
-
             self.w_ -= ((learning_rate) * (gradient_vector))
-            #for jdx in range(0, len(self.w_)):
-            #    self.w_[jdx] -= (learning_rate*lambda_*self.w_[jdx] )
             self.w_[1:] -= (learning_rate*lambda_*self.w_[1:])
-
             cost = self.cost_function(self.y, y_pred)
             self.cost_.append(cost)
 
         return self.w_, self.cost_, iteration
-
 
 class DataProcessing:
 
