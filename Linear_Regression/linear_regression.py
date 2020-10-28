@@ -6,9 +6,9 @@ from math import sqrt
 
 numerical_features = ["year","month", "day", "bedrooms", "bathrooms","sqft_living","sqft_lot","floors","waterfront","view","condition","grade","sqft_above","sqft_basement","yr_built","yr_renovated","zipcode","lat","long","sqft_living15","sqft_lot15"]
 categorical_features = ["waterfront","condition","grade"]
-font = {'fontsize' : 32}
 
 class Linear_Regression:
+
     def __init__ (self, x, y):
         """
         :param x: independent variables in linear regression model
@@ -26,7 +26,6 @@ class Linear_Regression:
         """
         self.w_ = np.zeros((self.x.shape[1], 1))
         N = self.x.shape[0]
-        np.savetxt("foo.csv", self.x, delimiter=",")
         self.cost_ = []
         iteration = 0
         idx = 0
