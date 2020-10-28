@@ -1,7 +1,6 @@
-# A Logistic Regression is a way to model the probability for binary classification tasks. 
 # Adding independent variables to a logistic regression can lead to the model overfitting.
 # In order to avoid overfitting on logistic regression, Ridge(L2) regularizer is applied,
-# its effect of the amount of regularization is experimented.
+# and its effect of the amount of regularization is experimented.
 
 import pandas as pd
 import numpy as np
