@@ -26,7 +26,6 @@ class Linear_Regression:
         """
         self.w_ = np.zeros((self.x.shape[1], 1))
         N = self.x.shape[0]
-        np.savetxt("foo.csv", self.x, delimiter=",")
         self.cost_ = []
         iteration = 0
         idx = 0
