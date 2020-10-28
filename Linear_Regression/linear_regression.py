@@ -30,7 +30,7 @@ class Linear_Regression:
         iteration = 0
         idx = 0
 
-        # Gradient Descent for MSE
+        # Gradient Descent
         for idx in range(0, max_iteration):
             idx = idx+1
             iteration = idx
