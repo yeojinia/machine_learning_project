@@ -147,7 +147,7 @@ def main():
         name = train_data.getName()
 
         for hyperparameter in lambda_:
-            w, cost, iteration = Logistic_Regression(train_data.getX(), train_data.getY()).train_with_L2_reg(max_iteration=10, learning_rate=learning_rate, epsilon=0.5, lambda_=hyperparameter)
+            w, cost, iteration = Logistic_Regression(train_data.getX(), train_data.getY()).train_with_L2_reg(max_iteration=10000, learning_rate=learning_rate, epsilon=0.5, lambda_=hyperparameter)
 
             result_ = zip(w, name)
             weight_result.append(result_)
