@@ -80,7 +80,6 @@ class Tree:
 
     def split_criteria(self):
         """
-        this function find the feature index
         :return: best feature index, the information gain of the best feature index
         """
         plus = np.sum(self.data[self.data[:, -1]>=0][:,-1])
@@ -228,7 +227,7 @@ def main():
     xVal = val_data.getX().values[:, :]
     yVal = val_data.getY().apply(lambda d: -1 if d[0] == 0 else 1, axis=1).values.reshape(len(xVal),1)
 
-    print(' ---------- Part 1 Decision Tree by Yeojin Kim ---------- \n')
+    print(' ---------- Decision Tree by Yeojin Kim ---------- \n')
 
     train_accuracies =[]
     validate_accuracies = []
@@ -259,8 +258,6 @@ def main():
     plt.title('Train and Validation accuracy versus Tree Depth')
     plt.savefig('DecisionTree.png')
     plt.show()
-   # plt.gcf().clear()
-
 
 if __name__ == '__main__':
     main()
