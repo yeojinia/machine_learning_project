@@ -1,7 +1,10 @@
 """
-This file is an implementation of kernelized vanilla perceptron.
-Kernel function maps the features to a high dimensional space where data become linearly separable.
-We experiment accuracy on training dataset and validation dataset with a polynomial kernel function (order: 1~5)
+Filename: 	    kernelized_perceptron.py
+Author:   	    Yeojin Kim
+Date:     	    November 2020
+Description:    This file is an implementation of kernelized vanilla perceptron.
+In this file, polynomial kernel (order: 1~5) maps the features to a high dimensional space
+where data become linearly separable and accuracy on training dataset and validation dataset is compared. 
 """
 
 import time
@@ -11,7 +14,9 @@ import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 
 class KernelPerceptron:
-
+    """
+    A class for kernelized vanilla perceptron learning
+    """
     def __init__(self, X, y, valX, valy, max_iteration):
         """
         :param X: training examples
@@ -46,12 +51,12 @@ class KernelPerceptron:
         K = self.polynomial_kernel(self.X, self.X, pow)
         valK = self.polynomial_kernel(self.X, self.valX, pow)
 
-        train_accuracy = []
-        validate_accuracy = []
+        training_accuracies = []
+        validation_accuracies = []
         self.y = self.y.flatten()
         self.valy = self.valy.flatten()
         accumulated_time = 0
-        times = []
+        iteration_durations = []
         for _ in range(0, self.max_iteration):
             start_time = time.time()
             idx = 0
@@ -62,14 +67,15 @@ class KernelPerceptron:
                 idx = idx + 1
             duration = time.time() - start_time
             accumulated_time = accumulated_time + duration
-            times.append(accumulated_time)
+            iteration_durations.append(accumulated_time)
 
-            test = self.accuracy(K, self.y, self.y, self.alpha)
-            validate = self.accuracy(valK, self.y, self.valy, self.alpha)
-            train_accuracy.append(test)
-            validate_accuracy.append(validate)
+            # accuracies for training dataset and validation dataset
+            train_accuracy = self.accuracy(K, self.y, self.y, self.alpha)
+            validation_accuracy = self.accuracy(valK, self.y, self.valy, self.alpha)
+            training_accuracies.append(train_accuracy)
+            validation_accuracies.append(validation_accuracy)
 
-        return self.alpha, train_accuracy, validate_accuracy, times
+        return self.alpha, training_accuracies, validation_accuracies, iteration_durations
 
     def accuracy(self, K, y_train, y, alpha):
         y_predict = np.sign(np.dot(np.multiply(alpha, y_train), K))
@@ -92,8 +98,7 @@ class Data:
 def main():
 
     train_data = Data("pa3_train_X.csv", "pa3_train_y.csv")
-    dev_data = Data("pa3_dev_X.csv", "pa3_dev_y.csv")
-
+    validation_data = Data("pa3_dev_X.csv", "pa3_dev_y.csv")
 
     mean_of_train_accuracy = []
     mean_of_validate_accuracy = []
@@ -107,8 +112,8 @@ def main():
     for pow in [1,2,3,4,5]:
 
         print("power: ", pow)
-        alpha, online_train_accuracy, online_validate_accuracy, times = KernelPerceptron(train_data.getX(), train_data.getY(), dev_data.getX(),
-                                                                                  dev_data.getY(), max_iteration=num_iteration).online_fit(learning_rate = learning_rate, pow =pow)
+        alpha, online_train_accuracy, online_validate_accuracy, times = KernelPerceptron(train_data.getX(), train_data.getY(), validation_data.getX(),
+                                                                                  validation_data.getY(), max_iteration=num_iteration).online_fit(learning_rate = learning_rate, pow =pow)
 
         print(len(times))
         total_times.append(times)
@@ -121,8 +126,8 @@ def main():
         best_train_accuracy.append(round(np.max(online_train_accuracy),3))
         best_validate_accuracy.append(round(np.max(online_validate_accuracy),3))
 
-        plt.plot(list(range(1, 101)), online_train_accuracy, label="training dataset")
-        plt.plot(list(range(1, 101)), online_validate_accuracy, label="validate dataset")
+        plt.plot(list(range(1, num_iteration+1)), online_train_accuracy, label="training dataset")
+        plt.plot(list(range(1, num_iteration+1)), online_validate_accuracy, label="validate dataset")
         plt.title("part2 online (p="+ str(pow) + ") training data")
         plt.ylabel('Accuracy')
         plt.xlabel('iteration')
@@ -131,7 +136,7 @@ def main():
         plt.close()
 
     for idx in range(0, 5):
-        plt.plot(list(range(1, 101)), total_times[idx])
+        plt.plot(list(range(1, num_iteration+1)), total_times[idx])
     plt.title("part2-a time measurement")
     plt.ylabel('time')
     plt.xlabel('iteration')
