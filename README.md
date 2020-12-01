@@ -1,4 +1,4 @@
-# machine learning implementation
+# machine learning algorithm implementation
 This repository is my implementation of basic machine learning algorithms.
 
 1) Linear Regression
