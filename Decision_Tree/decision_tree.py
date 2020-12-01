@@ -220,10 +220,12 @@ def main():
     # parse csv data
     train_data = Data("pa4_train_X.csv", "pa4_train_y.csv")
     val_data = Data("pa4_dev_X.csv", "pa4_dev_y.csv")
-
+    
+    # change label from 0/1 to -1/+1 
     xTrain = train_data.getX().values[:, :]
     yTrain = train_data.getY().apply(lambda d: -1 if d[0] == 0 else 1, axis=1).values.reshape(len(xTrain),1)
 
+    # change label from 0/1 to -1/+1
     xVal = val_data.getX().values[:, :]
     yVal = val_data.getY().apply(lambda d: -1 if d[0] == 0 else 1, axis=1).values.reshape(len(xVal),1)
 
