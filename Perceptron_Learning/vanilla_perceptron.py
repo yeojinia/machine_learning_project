@@ -41,8 +41,8 @@ class VanillaPerceptron:
         self.max_iteration = max_iteration
 
     def fit(self):
-        # w: online perceptron
-        # w_hat : average perceptron
+        # w: weight vectors for online perceptron
+        # w_hat : weight vectors for averaged perceptron
         self.w = np.zeros(self.X.shape[1])
         self.w_hat = np.zeros(self.X.shape[1])
 
@@ -95,15 +95,6 @@ def main():
     # print out all data
     print_accuracy_chart(train_online_err, train_avg_err, "training data with iteration 100")
     print_accuracy_chart(val_online_err, val_avg_err, "validation data with iteration 100")
-
-    # # best iteration: 5
-    # w, w_hat, train_online_err, train_avg_err, val_online_err, val_avg_err = VanillaPerceptron(train_data.getX(),
-    #                                                                                            train_data.getY(),
-    #                                                                                            dev_data.getX(),
-    #                                                                                            dev_data.getY(),
-    #                                                                                            max_iteration=5).fit()
-    # print_accuracy_chart(train_online_err, train_avg_err, "training data")
-    # print_accuracy_chart(val_online_err, val_avg_err, "validation data")
 
 if __name__ == '__main__':
     main()
