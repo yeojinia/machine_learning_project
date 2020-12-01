@@ -1,7 +1,10 @@
 """
-This file is an implementation of Vanilla Perceptron Classifier.
-In this file, online perceptron accuracy and its averaged perceptron accuracy
-are experimented on training dataset and validation dataset.
+Filename: 	    vanilla_perceptron.py
+Author:   	    Yeojin Kim
+Date:     	    November 2020
+Description:    This file is an implementation of Vanilla Perceptron Binary Classifier.
+In this file, online perceptron accuracy and its averaged perceptron accuracy 
+are evaluated on training dataset and validation dataset.
 """
 
 import numpy as np
