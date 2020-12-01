@@ -4,7 +4,7 @@ Author:   	    Yeojin Kim
 Date:     	    November 2020
 Description:    This file is an implementation of kernelized vanilla perceptron.
 In this file, polynomial kernel (order: 1~5) maps the features to a high dimensional space
-where data become linearly separable and accuracy on training dataset and validation dataset is compared. 
+and its accuracy on training dataset and validation dataset is evaluated. 
 """
 
 import time
@@ -83,7 +83,9 @@ class KernelPerceptron:
         return 1.-(float)(error)/len(y)
 
 class Data:
-
+    """
+    A class for data
+    """
     def __init__(self, fileX, fileY):
         self.cols = list(pd.read_csv(fileX, nrows=1))
         self.X = pd.read_csv(fileX)
