@@ -13,11 +13,9 @@ Yeojin Kim
 
 # Results Image 
 ## 1) Linear regression
-
 ![alt text](https://github.com/yeojinia/machine_learning_project/blob/main/Linear_Regression/linear_regression.png)
-## 2-1) Logistic regression with l1 regularization
-## 2-2) Logistic regression with l2 regularization
 
+## 2) Logistic regression with l1/l2 regularization
 ![alt text](https://github.com/yeojinia/machine_learning_project/blob/main/Logistic_Regression/logistic_regression_l1.png?raw=true)
 ![alt text](https://github.com/yeojinia/machine_learning_project/blob/main/Logistic_Regression/logistic_regression_l2.png?raw=true)
 
